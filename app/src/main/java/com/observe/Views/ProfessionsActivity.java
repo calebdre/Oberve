@@ -25,6 +25,8 @@ public class ProfessionsActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         profsList.setAdapter(new Adapter(this, Arrays.asList("Web Designer", "Back-End Engineer", "Front-End Engineer", "Pythonista", "Android Developer", "iOS Developer", "Windows Phone Developer", "Industrial Designer")));
+
+
     }
 
     @OnItemClick(R.id.list)
