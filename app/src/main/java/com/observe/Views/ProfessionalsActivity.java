@@ -16,19 +16,19 @@ import butterknife.OnItemClick;
 
 public class ProfessionalsActivity  extends AppCompatActivity {
 
-    @Bind(R.id.boards_list)
+    @Bind(R.id.list)
     ListView profsList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_boards);
+        setContentView(R.layout.activity_list);
         ButterKnife.bind(this);
 
         profsList.setAdapter(new Adapter(this, Arrays.asList("Julia Brooks", "Dorothy Hoffman", "Carol Weaver","Marilyn Meyer","Karen Obrien", "Nicole Marshall" ,"Madison Gonzales", "Joan Bailey"), true));
     }
 
-    @OnItemClick(R.id.boards_list)
+    @OnItemClick(R.id.list)
     public void onProfessionalItemClick(){
         startActivity(new Intent(this, ProfileActivity.class));
     }

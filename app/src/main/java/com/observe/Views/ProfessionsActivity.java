@@ -16,18 +16,18 @@ import butterknife.OnItemClick;
 
 public class ProfessionsActivity extends AppCompatActivity {
 
-    @Bind(R.id.boards_list) ListView profsList;
+    @Bind(R.id.list) ListView profsList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_boards);
+        setContentView(R.layout.activity_list);
         ButterKnife.bind(this);
 
         profsList.setAdapter(new Adapter(this, Arrays.asList("Web Designer", "Back-End Engineer", "Front-End Engineer", "Pythonista", "Android Developer", "iOS Developer", "Windows Phone Developer", "Industrial Designer")));
     }
 
-    @OnItemClick(R.id.boards_list)
+    @OnItemClick(R.id.list)
     public void onProfessionsItemClick(){
         startActivity(new Intent(this, ProfessionalsActivity.class));
     }
