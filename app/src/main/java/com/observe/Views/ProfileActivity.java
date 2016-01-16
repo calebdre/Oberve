@@ -3,6 +3,8 @@ package com.observe.Views;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ListView;
 
 import com.observe.Adapter;
@@ -25,6 +27,16 @@ public class ProfileActivity extends AppCompatActivity{
         ButterKnife.bind(this);
         List<String> names = Arrays.asList("Scrum meeting", "Storyboarding on iOS");
         list.setAdapter(new Adapter(this, names));
+        Window window = getWindow();
+
+// clear FLAG_TRANSLUCENT_STATUS flag:
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+
+// add FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS flag to the window
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+
+// finally change the color
+        window.setStatusBarColor(getResources().getColor(R.color.textBg, null));
     }
 
     @OnItemClick(R.id.list)
