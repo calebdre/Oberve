@@ -3,32 +3,34 @@ package com.observe.Views;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.widget.TextView;
+import android.widget.ListView;
 
+import com.observe.Adapter;
 import com.observe.R;
 
-import org.w3c.dom.Text;
+import java.util.Arrays;
+import java.util.List;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnItemClick;
 
 public class ProfileActivity extends AppCompatActivity{
 
+    @Bind(R.id.list) ListView list;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
         ButterKnife.bind(this);
+        List<String> names = Arrays.asList("Scrum meeting", "Storyboarding on iOS");
+        list.setAdapter(new Adapter(this, names));
+    }
 
-        TextView personsName = (TextView) findViewById(R.id.personsName);
-        personsName.getText().toString();
-        TextView following = (TextView) findViewById(R.id.followingAmount);
-        following.getText().toString();
-        TextView followers = (TextView) findViewById(R.id.followersAmount);
-        followers.getText().toString();
-
-        
-
-
+    @OnItemClick(R.id.list)
+    public void onListItemClick(){
+        Intent intent = new Intent(this, VideoActivity.class);
+        intent.putExtra("uri", "content://media/external/video/media/45154");
+        startActivity(intent);
     }
 }
