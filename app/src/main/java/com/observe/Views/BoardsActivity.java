@@ -4,9 +4,15 @@ import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 
 import com.observe.CustomPagerAdapter;
 import com.observe.R;
+import com.observe.RecyclerAdapter;
+
+import java.util.Arrays;
+import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -15,6 +21,7 @@ public class BoardsActivity extends AppCompatActivity {
 
     @Bind(R.id.tab_layout) TabLayout tabLayout;
     @Bind(R.id.pager) ViewPager viewPager;
+    @Bind(R.id.top_posts) RecyclerView topPosts;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,5 +52,9 @@ public class BoardsActivity extends AppCompatActivity {
 
             }
         });
+
+        List<String> names = Arrays.asList("Julia Brooks", "Dorothy Hoffman", "Carol Weaver","Marilyn Meyer","Sally Mae","Shannon Bob");
+        topPosts.setAdapter(new RecyclerAdapter(names, this));
+        topPosts.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
     }
 }
