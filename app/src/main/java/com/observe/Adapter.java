@@ -44,7 +44,12 @@ public class Adapter extends ArrayAdapter<String>{
         ((TextView) v.findViewById(R.id.text)).setText(getItem(position));
 
         if(pictures || values2 != null){
-            Picasso.with(context).load("http://api.randomuser.me/portraits/med/women/" + position + ".jpg").into((ImageView) v.findViewById(R.id.profile_image));
+            if(position == 0){
+                ((ImageView) v.findViewById(R.id.profile_image)).setImageDrawable(context.getResources().getDrawable(R.drawable.thumbnail, null));
+                ((TextView) v.findViewById(R.id.text)).setText("Terry Barnes");
+            }else{
+                Picasso.with(context).load("http://api.randomuser.me/portraits/med/women/" + position + ".jpg").into((ImageView) v.findViewById(R.id.profile_image));
+            }
         }
 
         if(values2 != null){
