@@ -44,6 +44,7 @@ public class BoardsActivity extends AppCompatActivity {
 
 // finally change the color
         window.setStatusBarColor(getResources().getColor(R.color.textBg, null));
+
         tabLayout.addTab(tabLayout.newTab().setText("Categories"));
         tabLayout.addTab(tabLayout.newTab().setText("Questions"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);

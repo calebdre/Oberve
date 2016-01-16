@@ -42,7 +42,7 @@ public class ProfileActivity extends AppCompatActivity{
     @OnItemClick(R.id.list)
     public void onListItemClick(){
         Intent intent = new Intent(this, VideoActivity.class);
-        intent.putExtra("uri", "content://media/external/video/media/45154");
+        intent.putExtra("uri", "content://media/external/video/media/45159");
         startActivity(intent);
     }
 }
