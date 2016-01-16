@@ -15,6 +15,7 @@ import android.view.WindowManager;
 import com.observe.CustomPagerAdapter;
 import com.observe.R;
 import com.observe.RecyclerAdapter;
+import com.observe.RecyclerItemClickListener;
 
 import java.util.Arrays;
 import java.util.List;
@@ -70,13 +71,11 @@ public class BoardsActivity extends AppCompatActivity {
         List<String> names = Arrays.asList("Julia Brooks", "Dorothy Hoffman", "Carol Weaver","Marilyn Meyer","Sally Mae","Shannon Bob");
         topPosts.setAdapter(new RecyclerAdapter(names, this));
         topPosts.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-
-        topPosts.setOnTouchListener(new View.OnTouchListener() {
+        topPosts.addOnItemTouchListener(new RecyclerItemClickListener(this, new RecyclerItemClickListener.OnItemClickListener() {
             @Override
-            public boolean onTouch(View v, MotionEvent event) {
+            public void onItemClick(View view, int position) {
                 startActivity(new Intent(BoardsActivity.this, ProfileActivity.class));
-                return false;
             }
-        });
+        }));
     }
 }
