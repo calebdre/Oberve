@@ -9,15 +9,15 @@ import com.observe.Adapter;
 import com.observe.R;
 
 import java.util.Arrays;
-import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnItemClick;
 
-public class BoardsActivity extends AppCompatActivity {
+public class ProfessionalsActivity  extends AppCompatActivity {
 
-    @Bind(R.id.boards_list) ListView boardsList;
+    @Bind(R.id.boards_list)
+    ListView profsList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,12 +25,11 @@ public class BoardsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_boards);
         ButterKnife.bind(this);
 
-        List<String> values = Arrays.asList("Doctor", "Lawyer", "Engineer", "Sports Star", "Entertainer", "Movie Personnel");
-        boardsList.setAdapter(new Adapter(this, values));
+        profsList.setAdapter(new Adapter(this, Arrays.asList("Julia Brooks", "Dorothy Hoffman", "Carol Weaver","Marilyn Meyer","Karen Obrien", "Nicole Marshall" ,"Madison Gonzales", "Joan Bailey"), true));
     }
 
     @OnItemClick(R.id.boards_list)
-    public void onBoardItemClick(){
-        startActivity(new Intent(this, ProfessionsActivity.class));
+    public void onProfessionalItemClick(){
+        startActivity(new Intent(this, ProfileActivity.class));
     }
 }

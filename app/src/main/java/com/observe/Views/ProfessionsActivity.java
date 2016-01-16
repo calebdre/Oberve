@@ -29,6 +29,6 @@ public class ProfessionsActivity extends AppCompatActivity {
 
     @OnItemClick(R.id.boards_list)
     public void onProfessionsItemClick(){
-        startActivity(new Intent(this, ProfileActivity.class))
+        startActivity(new Intent(this, ProfessionalsActivity.class));
     }
 }
