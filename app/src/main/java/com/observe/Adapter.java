@@ -46,7 +46,7 @@ public class Adapter extends ArrayAdapter<String>{
         if(pictures || values2 != null){
             if(position == 0){
                 ((ImageView) v.findViewById(R.id.profile_image)).setImageDrawable(context.getResources().getDrawable(R.drawable.thumbnail, null));
-                ((TextView) v.findViewById(R.id.text)).setText("Terry Barnes");
+                ((TextView) v.findViewById(R.id.text)).setText("Joe Hill");
             }else{
                 Picasso.with(context).load("http://api.randomuser.me/portraits/med/women/" + position + ".jpg").into((ImageView) v.findViewById(R.id.profile_image));
             }
