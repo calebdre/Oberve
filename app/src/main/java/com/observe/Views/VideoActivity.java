@@ -30,11 +30,24 @@ public class VideoActivity extends AppCompatActivity implements MediaPlayer.OnCo
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_video);
         ButterKnife.bind(this);
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA, Manifest.permission.CAPTURE_VIDEO_OUTPUT}, 50);
+
+        if (hasAllPermissions()) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA, Manifest.permission.CAPTURE_VIDEO_OUTPUT, Manifest.permission.READ_EXTERNAL_STORAGE}, 50);
         }else{
-            dispatchTakeVideoIntent();
+            Bundle extras = getIntent().getExtras();
+            if(extras != null){
+                playVideo(Uri.parse(extras.getString("uri")));
+            }else{
+                dispatchTakeVideoIntent();
+            }
         }
+    }
+
+    private boolean hasAllPermissions() {
+        return ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED
+                || ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED
+                || ContextCompat.checkSelfPermission(this, Manifest.permission.CAPTURE_VIDEO_OUTPUT) != PackageManager.PERMISSION_GRANTED;
+
     }
 
     private void dispatchTakeVideoIntent() {
@@ -44,18 +57,34 @@ public class VideoActivity extends AppCompatActivity implements MediaPlayer.OnCo
         }
     }
     public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
-        dispatchTakeVideoIntent();
+        Bundle extras = getIntent().getExtras();
+        if(extras != null){
+            playVideo(Uri.parse(extras.getString("uri")));
+        }else{
+            dispatchTakeVideoIntent();
+        }
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_VIDEO_CAPTURE && resultCode == RESULT_OK) {
             Uri videoUri = data.getData();
-            videoView.setVideoURI(videoUri);
-            videoView.setMediaController(null);
-            videoView.start();
-            videoView.setOnCompletionListener(this);
+            playVideo(videoUri);
         }
+    }
+
+    public void playVideo(Uri uri){
+        videoView.setVideoURI(uri);
+        videoView.setMediaController(null);
+        videoView.start();
+        videoView.setOnCompletionListener(this);
+    }
+
+    public void playVideo(String uri){
+        videoView.setVideoPath(uri);
+        videoView.setMediaController(null);
+        videoView.start();
+        videoView.setOnCompletionListener(this);
     }
 
     @Override

@@ -14,6 +14,7 @@ import java.util.List;
 
 public class Adapter extends ArrayAdapter<String>{
     private List<String> values;
+    private List<String> values2;
     private Context context;
     private boolean pictures = false;
 
@@ -21,6 +22,13 @@ public class Adapter extends ArrayAdapter<String>{
         super(context, 0);
         this.context = context;
         this.values = values;
+    }
+
+    public Adapter(Context context, List<String> values, List<String> values2) {
+        super(context, 0);
+        this.context = context;
+        this.values = values;
+        this.values2 = values2;
     }
 
     public Adapter(Context context, List<String> pythonista, boolean b) {
@@ -35,8 +43,12 @@ public class Adapter extends ArrayAdapter<String>{
         View v = ((Activity)context).getLayoutInflater().inflate(R.layout.adapter_view_item, parent, false);
         ((TextView) v.findViewById(R.id.text)).setText(getItem(position));
 
-        if(pictures){
+        if(pictures || values2 != null){
             Picasso.with(context).load("http://api.randomuser.me/portraits/med/women/" + position + ".jpg").into((ImageView) v.findViewById(R.id.profile_image));
+        }
+
+        if(values2 != null){
+            ((TextView) v.findViewById(R.id.subtitle)).setText(values2.get(position));
         }
         return v;
     }
