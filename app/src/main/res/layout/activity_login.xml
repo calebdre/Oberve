@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/login_observe"
     android:layout_gravity="center"
-    tools:context="com.observe.LoginActivity">
+    tools:context=".Views.LoginActivity">
     <LinearLayout
         android:orientation="vertical"
         android:layout_centerHorizontal="true"
